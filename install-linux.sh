@@ -3,6 +3,8 @@ if [ -f /etc/os-release ]; then
 fi
 
 git submodule update --init
+git config --global user.email "phin@zayda.net"
+git config --global user.name "Phineas Jensen"
 
 ## NeoVim
 echo "Setting up Neovim..."
