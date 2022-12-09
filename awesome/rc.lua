@@ -207,15 +207,16 @@ gears.timer {
     end
 }
 
-local mybattery = lain.widget.bat {
-    battery = "BAT1",
-    ac = "ADP1",
-    timeout = 5,
-    settings = function()
-        local charge = (bat_now.ac_status == 0) and '#d75f87' or '#5f875f'
-        widget:set_markup(markup.small(string.format("BAT: <span foreground='%s'>%3d%%</span>", charge, bat_now.perc)))
-    end
-}
+-- Battery:
+--local mybattery = lain.widget.bat {
+--    battery = "BAT1",
+--    ac = "ADP1",
+--    timeout = 5,
+--    settings = function()
+--        local charge = (bat_now.ac_status == 0) and '#d75f87' or '#5f875f'
+--        widget:set_markup(markup.small(string.format("BAT: <span foreground='%s'>%3d%%</span>", charge, bat_now.perc)))
+--    end
+--}
 
 local mycpu = lain.widget.cpu {
     settings = function()
@@ -229,38 +230,39 @@ local mymem = lain.widget.mem {
     end
 }
 
-local myvol = lain.widget.alsa {
-    cmd = "amixer -M ",
-    settings = function()
-        if volume_now.status == "on" then
-            level = volume_now.level .. "%"
-        else
-            level = "mute"
-        end
-        widget:set_markup("VOL: " .. level)
-    end,
-}
-
-function myvol:lower(percent)
-    os.execute(string.format("%s set %s %d%%-", self.cmd, self.channel, percent))
-    self.update()
-end
-
-function myvol:raise(percent)
-    os.execute(string.format("%s set %s %d%%+", self.cmd, self.channel, percent))
-    self.update()
-end
-
-function myvol:toggle_mute()
-    os.execute(string.format("%s set %s toggle", self.cmd, self.togglechannel or self.channel))
-    self.update()
-end
-
-myvol.widget:buttons(awful.util.table.join(
-    awful.button({}, 1, function() myvol:toggle_mute() end),
-    awful.button({}, 4, function() myvol:raise(2) end),
-    awful.button({}, 5, function() myvol:lower(2) end)
-))
+-- ALSA:
+--local myvol = lain.widget.alsa {
+--    cmd = "amixer -M ",
+--    settings = function()
+--        if volume_now.status == "on" then
+--            level = volume_now.level .. "%"
+--        else
+--            level = "mute"
+--        end
+--        widget:set_markup("VOL: " .. level)
+--    end,
+--}
+--
+--function myvol:lower(percent)
+--    os.execute(string.format("%s set %s %d%%-", self.cmd, self.channel, percent))
+--    self.update()
+--end
+--
+--function myvol:raise(percent)
+--    os.execute(string.format("%s set %s %d%%+", self.cmd, self.channel, percent))
+--    self.update()
+--end
+--
+--function myvol:toggle_mute()
+--    os.execute(string.format("%s set %s toggle", self.cmd, self.togglechannel or self.channel))
+--    self.update()
+--end
+--
+--myvol.widget:buttons(awful.util.table.join(
+--    awful.button({}, 1, function() myvol:toggle_mute() end),
+--    awful.button({}, 4, function() myvol:raise(2) end),
+--    awful.button({}, 5, function() myvol:lower(2) end)
+--))
 
 local separator = wibox.widget.textbox(" · ")
 
@@ -313,11 +315,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            myvol.widget,
+            -- ALSA: myvol.widget,
             separator,
             {
                 layout = wibox.layout.align.vertical,
-                mybattery.widget,
+                -- ALSA: mybattery.widget,
                 brightness,
             },
             separator,
@@ -444,13 +446,13 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey, "Shift" }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
-    -- Volume keys
-    awful.key({ }, "XF86AudioRaiseVolume",
-        function() myvol:raise(5) end),
-    awful.key({ }, "XF86AudioLowerVolume",
-        function() myvol:lower(5) end),
-    awful.key({ }, "XF86AudioMute",
-        function() myvol:toggle_mute() end),
+    -- ALSA Volume keys
+    --awful.key({ }, "XF86AudioRaiseVolume",
+    --    function() myvol:raise(5) end),
+    --awful.key({ }, "XF86AudioLowerVolume",
+    --    function() myvol:lower(5) end),
+    --awful.key({ }, "XF86AudioMute",
+    --    function() myvol:toggle_mute() end),
     awful.key({ modkey }, "b",
         function() 
             awful.spawn.easy_async_with_shell("/home/phin/bin/bukuadd", function(stdout)
