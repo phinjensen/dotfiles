@@ -1,1 +1,8 @@
-git submodule update --init
+my dotfiles
+===========
+
+This repo contains the configuration files that I use on my Arch Linux installations. In theory, it should be able to transfer over to other OSes without too much of an issue, but I've primarily written it for Arch. To set everything up, just run:
+
+bash install-linux.sh
+
+and follow the prompts.
