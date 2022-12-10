@@ -57,6 +57,9 @@ cp -r awesome $XDG_CONFIG_HOME
 ## Fonts
 cp -r fontconfig $XDG_CONFIG_HOME
 
+## Wallpapers
+cp -r wallpapers ~
+
 cp bashrc ~/.bashrc
 cat bash_profile_startx >> ~/.bash_profile
 echo "You should be all set up. Log out and log back in to finalize changes."
