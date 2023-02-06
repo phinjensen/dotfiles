@@ -12,4 +12,6 @@ source ~/.config/user-dirs.dirs
 alias ls='ls --color=auto'
 alias vim='nvim'
 
+export PATH="$PATH:$HOME/.cargo/bin"
+
 eval "$(starship init bash)"

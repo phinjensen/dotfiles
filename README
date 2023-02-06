@@ -6,3 +6,16 @@ This repo contains the configuration files that I use on my Arch Linux installat
 bash install-linux.sh
 
 and follow the prompts.
+
+Firefox
+=======
+
+Firefox has some annoying settings that don't get synced (my normal way of updating my installation), like those that have to get changed in `about:config`. Those that need to be changed:
+
+  ui.key.menuAccessKeyFocuses: false
+  browser.tabs.firefox-view: false
+
+TODO
+====
+
+I'm trying Fedora Workstation on my laptop now. A new script will need to be written for automated installation, and some things will undoubtedly be different (e.g. xinitrc).

@@ -228,6 +228,7 @@ nnoremap <silent> <leader>pdf :!to-pdf "%"<cr>
 nnoremap <nowait> <leader>nn :n %:p:h/
 
 set clipboard+=unnamedplus
+set mouse=
 
 nnoremap <C-l> :Files<cr>
 
