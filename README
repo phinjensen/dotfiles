@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 my dotfiles
 ===========
 
@@ -19,3 +20,13 @@ TODO
 ====
 
 I'm trying Fedora Workstation on my laptop now. A new script will need to be written for automated installation, and some things will undoubtedly be different (e.g. xinitrc).
+
+- Do TSInstall for all relevant treesitterlanguages
+  :TSInstall c cpp css lua html java javascript json python rust
+- Install language servers for relevant languages
+  - JS/TS
+  - Python
+  - Rust
+  - C/C++
+  - Java
+- clone with `git submodule update --init`
