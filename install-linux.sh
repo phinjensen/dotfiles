@@ -38,13 +38,16 @@ git submodule update --init
 git config --global user.email "phin@zayda.net"
 git config --global user.name "Phineas Jensen"
 
-## Set upNeoVim
+## Set up NeoVim
 echo "Setting up Neovim..."
 cp -r nvim $XDG_CONFIG_HOME
 # Install vim-plug https://github.com/junegunn/vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim .vim-plug-note +PlugInstall
+
+## Set up LunarVim
+LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
 
 ## Kitty
 echo "Setting up Kitty & Bash"
