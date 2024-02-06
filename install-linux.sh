@@ -4,7 +4,7 @@ if [ -f /etc/os-release ]; then
 	source /etc/os-release
 fi
 
-PACKAGES="awesome fzf keepassxc kitty neovim starship syncthing ttc-iosevka ttf-nerd-fonts-symbols-mono xclip xorg-server xorg-setxkbmap xorg-xinit xscreensaver"
+PACKAGES="awesome fzf keepassxc kitty neovim picom starship syncthing ttc-iosevka ttf-nerd-fonts-symbols-mono xclip xorg-server xorg-setxkbmap xorg-xinit xscreensaver"
 # TODO: Add back an alternative to light
 
 if [ "$NAME" = "Arch Linux" ]; then
