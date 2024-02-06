@@ -47,14 +47,15 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 nvim .vim-plug-note +PlugInstall
 
 ## Set up LunarVim
-LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+echo "Setting up LunarVim..."
+cp -r lvim $XDG_CONFIG_HOME
 
 ## Kitty
-echo "Setting up Kitty & Bash"
+echo "Setting up Kitty & Bash..."
 cp -r kitty $XDG_CONFIG_HOME
 
 ## Awesome
-echo "Setting up Awesome"
+echo "Setting up Awesome..."
 cp -r awesome $XDG_CONFIG_HOME
 # TODO: Make prompts to edit awesome RC
 
@@ -63,6 +64,9 @@ cp -r fontconfig $XDG_CONFIG_HOME
 
 ## Wallpapers
 cp -r wallpapers ~
+
+## tmux
+cp tmux.conf ~/.tmux.conf
 
 cp bashrc ~/.bashrc
 cat bash_profile_startx >> ~/.bash_profile

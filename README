@@ -15,6 +15,9 @@ Firefox has some annoying settings that don't get synced (my normal way of updat
 
   ui.key.menuAccessKeyFocuses: false
   browser.tabs.firefox-view: false
+  browser.compactmode.show: true
+
+Also, customize the toolbar to remove Pocket, Firefox account, and buffer areas around address bar.
 
 TODO
 ====
