@@ -20,14 +20,15 @@ sudo ln -fs /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/font
 sudo sed -i 's/Symbols Nerd Font/Symbols Nerd Font Mono/' /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf
 fc-cache
 
-echo "Setting up xinit and bash_profile..."
+echo "Setting up X and XDG..."
 cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources
+cp xscreensaver ~/.xscreensaver
+localectl set-x11-keymap us,ir pc104 "" grp:rwin_toggle,ctrl:nocaps
+
+echo "Copying and sourcing .bash_profile"
 cp bash_profile ~/.bash_profile
 source ~/.bash_profile
-
-echo "Configuring keyboard..."
-localectl set-x11-keymap us,ir pc104 "" grp:rwin_toggle,ctrl:nocaps
 
 echo "Enabling syncthing..."
 sudo systemctl enable syncthing@phin.service
@@ -63,6 +64,9 @@ cp tmux.conf ~/.tmux.conf
 
 echo "Configuring picom..."
 cp picom.conf $XDG_CONFIG_HOME
+
+echo "Enabling SSH agent..."
+systemctl enable --now --user ssh-agent
 
 echo "Configuring bash..."
 cp bashrc ~/.bashrc

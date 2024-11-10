@@ -14,4 +14,5 @@ alias vim='nvim'
 
 export PATH="$PATH:$HOME/.cargo/bin"
 
+eval "$(fzf --bash)"
 eval "$(starship init bash)"

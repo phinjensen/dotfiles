@@ -13,7 +13,6 @@ Firefox
 Firefox has some annoying settings that don't get synced (my normal way of updating my installation), like those that have to get changed in `about:config`. Those that need to be changed:
 
   ui.key.menuAccessKeyFocuses: false
-  browser.tabs.firefox-view: false
   browser.compactmode.show: true
 
 Also, customize the toolbar to remove Pocket, Firefox account, and buffer areas around address bar.
@@ -31,8 +30,5 @@ TODO
   - Java
 - clone with `git submodule update --init`
 - Fix rc.lua:203: attempt to perform arithmetic on a nil value
-- Add caps-control and other keyboard setup
 - Make firefox changes automatic
-- Xscreensaver config
-- Add fzf config
 - Add atuin (but make sure to configure it better first)
