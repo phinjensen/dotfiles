@@ -4,7 +4,7 @@ if [ -f /etc/os-release ]; then
 	source /etc/os-release
 fi
 
-PACKAGES="awesome fzf keepassxc kitty neovim picom starship syncthing ttc-iosevka ttf-nerd-fonts-symbols-mono xclip xorg-server xorg-setxkbmap xorg-xinit xscreensaver"
+PACKAGES="awesome fzf keepassxc kitty neovim noto-fonts picom starship syncthing ttc-iosevka ttf-nerd-fonts-symbols-mono xclip xorg-server xorg-setxkbmap xorg-xinit xscreensaver"
 # TODO: Add back an alternative to light
 
 if [ "$NAME" = "Arch Linux" ]; then
@@ -15,59 +15,56 @@ else
   exit 1
 fi
 
-# Set up nerd font
+echo "Installing nerd font..."
 sudo ln -fs /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/
 sudo sed -i 's/Symbols Nerd Font/Symbols Nerd Font Mono/' /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf
 fc-cache
 
-# Add user to video group for light
-sudo usermod -aG video phin
-
-# Set up xinit and bash_profile
+echo "Setting up xinit and bash_profile..."
 cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources
 cp bash_profile ~/.bash_profile
 source ~/.bash_profile
 
-# Enable Syncthing
+echo "Configuring keyboard..."
+localectl set-x11-keymap us,ir pc104 "" grp:rwin_toggle,ctrl:nocaps
+
+echo "Enabling syncthing..."
 sudo systemctl enable syncthing@phin.service
 sudo systemctl start syncthing@phin.service
 
-## Configure Git
+echo "Configuring git..."
 git submodule update --init
 git config --global user.email "phin@zayda.net"
 git config --global user.name "Phineas Jensen"
 
-## Set up NeoVim
 echo "Setting up Neovim..."
-cp -r nvim $XDG_CONFIG_HOME
+cp -r nvim $XDG_CONFIG_HOME/nvim/
 # Install vim-plug https://github.com/junegunn/vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim .vim-plug-note +PlugInstall
 
-## Set up LunarVim
-echo "Setting up LunarVim..."
-cp -r lvim $XDG_CONFIG_HOME
-
-## Kitty
-echo "Setting up Kitty & Bash..."
+echo "Setting up Kitty..."
 cp -r kitty $XDG_CONFIG_HOME
 
-## Awesome
 echo "Setting up Awesome..."
 cp -r awesome $XDG_CONFIG_HOME
 # TODO: Make prompts to edit awesome RC
 
-## Fonts
+echo "Setting up font config..."
 cp -r fontconfig $XDG_CONFIG_HOME
 
-## Wallpapers
+echo "Setting wallpaper..."
 cp -r wallpapers ~
 
-## tmux
+echo "Configuring tmux..."
 cp tmux.conf ~/.tmux.conf
 
+echo "Configuring picom..."
+cp picom.conf $XDG_CONFIG_HOME
+
+echo "Configuring bash..."
 cp bashrc ~/.bashrc
 cat bash_profile_startx >> ~/.bash_profile
 echo "You should be all set up. Log out and log back in to finalize changes."

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 my dotfiles
 ===========
 
@@ -22,8 +21,6 @@ Also, customize the toolbar to remove Pocket, Firefox account, and buffer areas 
 TODO
 ====
 
-I'm trying Fedora Workstation on my laptop now. A new script will need to be written for automated installation, and some things will undoubtedly be different (e.g. xinitrc).
-
 - Do TSInstall for all relevant treesitterlanguages
   :TSInstall c cpp css lua html java javascript json python rust
 - Install language servers for relevant languages
@@ -33,3 +30,9 @@ I'm trying Fedora Workstation on my laptop now. A new script will need to be wri
   - C/C++
   - Java
 - clone with `git submodule update --init`
+- Fix rc.lua:203: attempt to perform arithmetic on a nil value
+- Add caps-control and other keyboard setup
+- Make firefox changes automatic
+- Xscreensaver config
+- Add fzf config
+- Add atuin (but make sure to configure it better first)
